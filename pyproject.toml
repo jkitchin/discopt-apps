@@ -47,7 +47,7 @@ namespaces = true
 # modules would overwrite this package's files in site-packages. REMOVE this
 # block when discopt v0.6.0 is published.
 [tool.uv.sources]
-discopt = { git = "https://github.com/jkitchin/discopt", branch = "refactor/431-extract-apps" }
+discopt = { git = "https://github.com/jkitchin/discopt", branch = "main" }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
