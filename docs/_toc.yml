@@ -1,0 +1,10 @@
+format: jb-book
+root: intro
+parts:
+  - caption: Applications
+    chapters:
+      - file: notebooks/ac_opf
+      - file: notebooks/pooling_pq
+  - caption: Appendix
+    chapters:
+      - file: references

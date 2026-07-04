@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "discopt-apps"
+version = "0.1.0"
+description = "AC-OPF and pooling application builders for the discopt modeling language"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "EPL-2.0" }
+authors = [{ name = "John Kitchin", email = "jkitchin@andrew.cmu.edu" }]
+dependencies = [
+    # The public discopt.modeling.core API these builders write against ships
+    # in 0.6.
+    "discopt>=0.6",
+    "numpy>=1.24",   # opf.py builds the admittance matrix with numpy
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-timeout",
+    # opf's reference power-flow test cross-checks against a scipy fsolve.
+    "scipy>=1.10",
+    # docs build
+    "jupyter-book<2",
+    "sphinxcontrib-bibtex",
+]
+
+# discopt.opf and discopt.pooling are PEP 420 namespace subpackages: they merge
+# into the ``discopt`` namespace at import time (discopt's __init__ extends its
+# __path__ via pkgutil.extend_path). We deliberately package only
+# ``discopt.opf`` and ``discopt.pooling`` — never ``discopt`` — so this
+# distribution never shadows the base package.
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["discopt.opf*", "discopt.pooling*"]
+namespaces = true
+
+# Pre-release window: discopt 0.6 is not on PyPI yet (and not on git main),
+# so resolve it from the extraction branch. That branch has the 0.6 API and
+# has discopt.opf / discopt.pooling removed — branches that still ship these
+# modules would overwrite this package's files in site-packages. REMOVE this
+# block when discopt v0.6.0 is published.
+[tool.uv.sources]
+discopt = { git = "https://github.com/jkitchin/discopt", branch = "refactor/431-extract-apps" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+timeout = 300
+addopts = "-m 'not slow'"
+markers = [
+    "smoke: one build per code path on a tiny instance; fast",
+    "slow: long-running tests (excluded by default; run with -m '')",
+    "correctness: known-optimum solves that validate the certificate",
+    "integration: end-to-end multi-component workflows",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+# The docs notebooks are copied verbatim from the base repo as narrative
+# teaching material; they are not project source and must not be reformatted or
+# linted (they carry illustrative, deliberately terse cells).
+extend-exclude = ["docs/notebooks/"]

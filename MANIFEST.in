@@ -1,0 +1,8 @@
+# These subpackages are pure-Python today, but grafting the trees means any
+# data files the builders grow later ship automatically instead of being
+# silently dropped by an extension allowlist.
+graft src/discopt/opf
+graft src/discopt/pooling
+global-exclude __pycache__/*
+global-exclude *.py[cod]
+global-exclude .DS_Store

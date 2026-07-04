@@ -1,0 +1,20 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      # Installs discopt from the pinned extraction branch (see [tool.uv.sources]
+      # in pyproject.toml) plus the dev group (pytest, scipy for the OPF
+      # reference solve). Requires discopt>=0.6.
+      - run: uv sync --python 3.12
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest tests/ -q
