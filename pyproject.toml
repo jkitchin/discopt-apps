@@ -20,6 +20,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest>=8",
+    "ruff==0.14.6",  # repo-standard pin (CLAUDE.md); CI runs `uv run ruff`
     "pytest-timeout",
     # opf's reference power-flow test cross-checks against a scipy fsolve.
     "scipy>=1.10",
