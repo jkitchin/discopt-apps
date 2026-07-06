@@ -1,5 +1,7 @@
 # discopt-apps
 
+[![ci](https://github.com/jkitchin/discopt-apps/actions/workflows/ci.yml/badge.svg)](https://github.com/jkitchin/discopt-apps/actions/workflows/ci.yml)
+
 Nonconvex application builders for the
 [discopt](https://github.com/jkitchin/discopt) modeling language. The
 distribution ships **two** namespace subpackages — code written against
