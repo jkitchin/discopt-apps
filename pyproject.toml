@@ -7,7 +7,7 @@ name = "discopt-apps"
 version = "0.1.0"
 description = "AC-OPF and pooling application builders for the discopt modeling language"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 license = { text = "EPL-2.0" }
 authors = [{ name = "John Kitchin", email = "jkitchin@andrew.cmu.edu" }]
 dependencies = [
@@ -63,7 +63,7 @@ markers = [
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py312"
 # The docs notebooks are copied verbatim from the base repo as narrative
 # teaching material; they are not project source and must not be reformatted or
 # linted (they carry illustrative, deliberately terse cells).
