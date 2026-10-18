@@ -4,7 +4,7 @@ AC-OPF is the canonical hard QCQP of power systems: choose generator setpoints
 and bus voltages to meet demand at minimum cost, subject to the (nonconvex)
 power-flow physics. In **rectangular** coordinates ``V_i = e_i + j f_i`` the
 power injections are *quadratic* in ``(e, f)``, so the whole problem is a QCQP —
-exactly the structure the Wave-2 PSD/SOC cuts target.
+exactly the structure discopt's PSD/SOC cuts target.
 
 For a bus ``i`` with network admittance ``Y_ik = G_ik + j B_ik`` the injected
 power is ``S_i = V_i * conj(sum_k Y_ik V_k)``, giving
@@ -30,7 +30,14 @@ import numpy as np
 import discopt.modeling.core as dm
 from discopt.modeling.core import Expression, Variable
 
-__all__ = ["Bus", "Line", "ACOPF", "build_ac_opf_rectangular"]
+__all__ = [
+    "Bus",
+    "Line",
+    "ACOPF",
+    "admittance_matrix",
+    "build_ac_opf_rectangular",
+    "two_bus_example",
+]
 
 
 @dataclass

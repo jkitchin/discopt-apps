@@ -43,3 +43,12 @@ def test_pooling_public_api():
     assert callable(haverly_hpp1)
     for cls in (Input, Pool, Output, PoolingProblem):
         assert isinstance(cls, type)
+
+
+@pytest.mark.parametrize("modname", ["discopt.opf", "discopt.pooling"])
+def test_all_names_resolve(modname):
+    import importlib
+
+    mod = importlib.import_module(modname)
+    missing = [name for name in mod.__all__ if not hasattr(mod, name)]
+    assert not missing

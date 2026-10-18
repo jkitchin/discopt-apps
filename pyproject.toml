@@ -12,7 +12,7 @@ license = { text = "EPL-2.0" }
 authors = [{ name = "John Kitchin", email = "jkitchin@andrew.cmu.edu" }]
 dependencies = [
     # The public discopt.modeling.core API these builders write against ships
-    # in 0.6.
+    # in 0.6. Tested against 0.6.0, 0.8.0, 0.9.0 and main.
     "discopt>=0.6",
     "numpy>=1.24",   # opf.py builds the admittance matrix with numpy
 ]
@@ -41,14 +41,6 @@ include-package-data = true
 where = ["src"]
 include = ["discopt.opf*", "discopt.pooling*"]
 namespaces = true
-
-# Pre-release window: discopt 0.6 is not on PyPI yet (and not on git main),
-# so resolve it from the extraction branch. That branch has the 0.6 API and
-# has discopt.opf / discopt.pooling removed — branches that still ship these
-# modules would overwrite this package's files in site-packages. REMOVE this
-# block when discopt v0.6.0 is published.
-[tool.uv.sources]
-discopt = { git = "https://github.com/jkitchin/discopt", branch = "main" }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

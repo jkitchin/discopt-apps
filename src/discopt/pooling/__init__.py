@@ -13,9 +13,9 @@ coming from input ``i``) together with the Reformulation–Linearization cuts
     sum_i w[i,l,j] = y[l,j]          (pq cuts, one per pool->output arc),
 
 where ``w[i,l,j] = q[i,l] * y[l,j]``. These redundant-but-tightening equalities
-make the pq relaxation provably at least as tight as the p- and q-formulations,
-and on classic instances (e.g. Haverly) the root relaxation is already exact —
-the global optimum is found at the root node.
+make the pq relaxation provably at least as tight as the p- and q-formulations.
+On Haverly the root McCormick bound is 433 1/3 against the optimum of 400, and
+branch-and-bound closes the gap in a handful of nodes.
 
 The builder emits a standard :class:`discopt.modeling.core.Model`; the global
 machinery (McCormick relaxation + spatial B&B) is reused unchanged, so the

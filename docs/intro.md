@@ -23,8 +23,8 @@ application is solved by the same certified engine as any other model.
    inflows, so the problem is a nonconvex NLP whose naive McCormick relaxation
    {cite:p}`McCormick1976` is weak. `build_pq_formulation` builds the
    pq-formulation of {cite:t}`Tawarmalani2002`, whose RLT cuts make the root
-   relaxation provably tighter — on classic instances (Haverly) it is already
-   exact.
+   relaxation provably tighter, so classic instances (Haverly) close in a
+   handful of branch-and-bound nodes.
 
 ## Install
 

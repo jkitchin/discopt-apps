@@ -19,7 +19,8 @@ global engine (McCormick relaxation + spatial branch-and-bound) solves them.
 2. **The pooling problem** (`discopt.pooling`) — blend raw inputs of known
    quality through pools into spec-constrained products at maximum profit. The
    builder emits the tight pq-formulation (Tawarmalani & Sahinidis) whose RLT
-   cuts make the root relaxation exact on classic instances (Haverly).
+   cuts strengthen the McCormick relaxation, so classic instances (Haverly)
+   close in a handful of branch-and-bound nodes.
 
 ## Install
 
@@ -57,19 +58,19 @@ print(result.status, float(result.objective))
 The project is uv-managed:
 
 ```bash
-uv sync            # create .venv with discopt (pinned branch) + dev deps
+uv sync            # create .venv with discopt (from PyPI) + dev deps
 uv run pytest      # fast test set (slow tests excluded by default)
 uv run pytest -m ''    # everything, including the slow OPF reference solve
 uv run ruff check .
 uv run ruff format --check .
 ```
 
-To develop against a local discopt checkout instead of the pinned branch, add
+To develop against a local discopt checkout instead of the PyPI release, add
 a `[tool.uv.sources]` override pointing `discopt` at your editable clone:
 
 ```toml
 [tool.uv.sources]
-discopt = { path = "../../projects/discopt", editable = true }
+discopt = { path = "/path/to/discopt", editable = true }
 ```
 
 Docs are a Jupyter Book:

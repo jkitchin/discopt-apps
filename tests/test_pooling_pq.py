@@ -5,7 +5,7 @@ Two layers:
     / linearization constraints (run by default);
   * known-optima validation (marked ``correctness``) — the pq-formulation solves
     the canonical Haverly instance (optimum 400) and a small analytic blending
-    instance (optimum 700) to their global optima, at/near the root node because
+    instance (optimum 700) to their global optima in a handful of nodes because
     the pq relaxation is tight.
 """
 

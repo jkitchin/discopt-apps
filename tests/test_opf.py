@@ -1,4 +1,4 @@
-"""Tests for the rectangular AC-OPF builder (Wave 2, W5 capstone).
+"""Tests for the rectangular AC-OPF builder.
 
 AC-OPF is the flagship nonconvex QCQP application. Correctness is validated two
 ways: the power-injection formulas must equal ``Re/Im[V_i conj(Y V)]`` exactly,
